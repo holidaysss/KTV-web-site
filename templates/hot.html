@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>follow your voice</title>
+    <base target="_blank">
+    <link rel="stylesheet" href="static/css/home.css">
+</head>
+<body>
+<div class="main" style="background-image: url(&quot;https://images.pexels.com/photos/601798/pexels-photo-601798.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260&quot;);display: block; left: 0px; position: absolute; overflow: hidden; height: 100%; width: 100%; top: 0px; z-index: 2; background-position: 50% 0px; background-size: 100% 100%;">
+
+    <div class="title">
+        <h1>MacRae</h1>
+    </div>
+    <!--<h1>MacRae 歌吧</h1>-->
+    <!--<a href="#" class="logo-symbol">-->
+        <!--<img src="static/img/ktv.svg" alt="Main Logo" class="img-rounded" height="100px" width="152px">-->
+    <!--</a>-->
+    <div class="toolbar">
+        <a target="_self" href="{{url_for('index')}}" class="active">Home</a>
+        <a target="_self" href="{{url_for('hot')}}" style="background-color: #ca65ac;color: #fff;">Top Songs</a>
+        <a target="_self" href="{{url_for('china', page=1)}}">华语</a>
+        <a target="_self" href="{{url_for('english', page=1)}}">English</a>
+         <a target="_self" href="{{url_for('japan', page=1)}}">日语</a>
+
+    </div>
+    <table data-pagination="true" data-side-pagination="client" data-page-size="10" >
+        {% for song in songs.items %}
+            <tr>
+                <td><a href="https://y.qq.com/n/yqq/song/{{song.mid}}.html" style="text-decoration:blink; color:pink">{{song.name}}</a></td>
+                <td><span class="song_singer">{{song.singer}}</span></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <!--<img class="mobile-slide preserve" src="http://litta.co/wp-content/uploads/2017/06/homescreen.jpeg" height="100%" width="100%" style="position:absolute;display: block; top:0; overflow: hidden;">-->
+</div>
+</body>
+</html>

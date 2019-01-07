@@ -1,0 +1,13 @@
+.slides-container .slide-item {
+    background-image: url(http://litta.co/wp-content/uploads/2017/06/homescreen.jpeg);
+    display: none;
+    left: 1190px;
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    width: 1190px;
+    top: 0px;
+    z-index: 0;
+    opacity: 1;
+    background-position: 50% 0px;
+}

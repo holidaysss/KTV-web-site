@@ -1,0 +1,131 @@
+body {
+    margin-top: 0;
+    margin: 0;
+}
+
+
+.main {
+    margin: 0 auto;
+    background-color:highlight;
+    margin-top: 0;
+}
+
+.main .title {
+    margin: 0 auto;
+}
+
+.main .search-wraper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 360px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.main .search-wraper .form-group {
+
+    margin-bottom: 15px;
+}
+
+input.form-control.search.clearable{
+    background: url(https://topvet.azureedge.net/Backgrounds/search.png) left
+    center no-repeat #fff;
+    box-shadow: none;
+    font-size: 12px;
+    padding: 7px 80px;
+    border-radius: 0;
+    height: auto;
+    text-align: center;
+    border-color: transparent;
+}
+
+.main .title h1 {
+    color: #333;
+    margin: 10px 0 10px 0;
+    text-align: center;
+    font-size: 56px;
+    text-shadow: -5px 5px 0 rgba(0,0,0,.1);
+}
+
+.toolbar {
+    height: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.toolbar a {
+    width: 100px;
+    padding: 3px 10px;
+    text-decoration: none;
+    color: #87a5b5;
+}
+
+.toolbar a:hover {
+    background-color: #ed4040;
+    color: #fff;
+}
+
+.toolbar .home {
+    background-color: #ed4040;
+    color: #fff;
+}
+
+.item {
+    width: 800px;
+    height: 102px;
+    margin: 3px 0;
+    position: relative;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.left {
+    width: 180px;
+    height: 100px;
+    float: left;
+}
+
+.right {
+    width: 600px;
+    height: 100px;
+    float: left;
+}
+
+.img-rounded{
+    width: 156px;
+    height: 100px;
+}
+
+.title {
+    font-size: 20px;
+    width: 600px;
+    font-weight: 700;
+    margin-top: 10px;
+    color: grey;
+}
+
+.title a {
+    color: #222222;
+    text-decoration: none;
+}
+
+.bottom a {
+    text-decoration: none;
+}
+
+.bottom a:hover {
+    color: #333;
+}
+
+.bottom {
+    color: #87a5b5;
+    margin-top: 10px;
+}
+
+.bottom a {
+    color: #87a5b5;
+}
+
+.bottom div {
+    float: left;
+    margin-right: 10px;
+}
