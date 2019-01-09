@@ -4,7 +4,7 @@ import config
 import json, os
 import re
 import pickle
-from table import Singer, Song
+from table import Singer, Song, Top, Album
 
 
 app = Flask(__name__)
@@ -41,10 +41,26 @@ def index():
         #             db.session.add(singer)
         #         print('insert!!!')
         #         db.session.commit()
-        songs = Song.query.filter(Song.singer.contains('周杰伦'))
-        song = songs.paginate(1, 10, False)
-        print(song)
-        return render_template('home.html', songs=song)
+
+        # os.chdir("C:/Users/summer/Desktop/点歌系统/排行榜")  # 换路径
+        # with open('港台排行榜.sj', 'rb') as f:
+        #     ct = pickle.load(f)
+        #     for i in ct:
+        #         top = Top(area=2, songname=i[0], singername=i[2], songmid=i[1])
+        #         db.session.add(top)
+        #         print(i)
+        #     db.session.commit()
+        # os.chdir("C:/Users/summer/Desktop/点歌系统")
+        # with open('专辑信息.sj', 'rb')as f:
+        #     output = pickle.load(f)
+        #     for n, i in enumerate(output):
+        #         print(i)
+        #         if i[2]:
+        #             album = Album(name=i[2], albummid=i[1], singer=i[0])
+        #             db.session.add(album)
+        #     db.session.commit()
+        # print('!!!!!!!!!!!!!!!!!!!!!!!!!')
+        return render_template('home.html')
     else:
         search = request.form.get('search')  # 写啥
         print(search)
@@ -65,8 +81,15 @@ def search(search, page=1):
         print('!!!!')
         songs1 = Song.query.filter(Song.singer.contains(singer.name))
         songs = songs1.paginate(page, 40, False)
-        print(songs.items)
-        return render_template('search.html', search=search, songs=songs)
+        s_a_lsit = []
+        for i in songs.items:
+            s_a_lsit.append(i.albummid)
+        album1 = Album.query.filter(Album.albummid.in_(s_a_lsit))
+        albums = album1.paginate(page, 40, False)
+        num = len(songs.items)
+        print(albums.items)
+        # print(songs.items)
+        return render_template('search.html', search=search, songs=songs, albums=albums, num=num)
     else:
         print('song')
         songs = Song.query.filter(Song.name.contains(search))
@@ -75,12 +98,13 @@ def search(search, page=1):
         return render_template('search.html', search=search, songs=song)
 
 
-@app.route('/hot', methods=['POST', 'GET'])
-def hot():
-    songs = Song.query.filter(Song.singer.contains('周杰伦'))
-    song = songs.paginate(1, 20, False)
-    print(song)
-    return render_template('hot.html', songs=song)
+@app.route('/hot/<int:page>', methods=['POST', 'GET'])
+def hot(page=1):
+
+    tops = Top.query.filter(Top.id > 0)
+    top = tops.paginate(page, 15, False)
+    print(top)
+    return render_template('hot.html', tops=top)
 
 
 @app.route('/english/<int:page>', methods=['GET'])

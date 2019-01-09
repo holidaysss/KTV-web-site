@@ -1,49 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>华语歌手</title>
-    <base target="_blank">
-    <link rel="stylesheet" href="../static/css/home.css">
-</head>
-<body>
-<div class="main" style="background-image: url(&quot;https://images.pexels.com/photos/601798/pexels-photo-601798.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260&quot;);display: block; left: 0px; position: absolute; overflow: hidden; height: 100%; width: 100%; top: 0px; z-index: 2; background-position: 50% 0px; background-size: 100% 100%;">
-
-    <div class="title">
-        <h1>MacRae</h1>
-    </div>
-    <!--<h1>MacRae 歌吧</h1>-->
-    <!--<a href="#" class="logo-symbol">-->
-        <!--<img src="static/img/ktv.svg" alt="Main Logo" class="img-rounded" height="100px" width="152px">-->
-    <!--</a>-->
-    <div class="toolbar">
-        <a target="_self" href="{{url_for('index')}}" class="active">Home</a>
-        <a target="_self" href="{{url_for('hot')}}">Top Songs</a>
+{% extends 'base.html' %}
+{% block title %}华语歌手{% endblock %}
+{% block nav %}
         <a target="_self" href="{{url_for('china', page=1)}}" style="background-color: #ca65ac;color: #fff;">华语</a>
         <a target="_self" href="{{url_for('english', page=1)}}">English</a>
         <a target="_self" href="{{url_for('japan', page=1)}}">日语</a>
-    </div>
-
-    <table data-pagination="true" data-side-pagination="client" data-page-size="10" >
-            {% for singer in singers.items %}
-            <tr>
-                <td><a href="{{url_for('search', search=singer.name, page=1)}}" style="color:pink; text-decoration:blink;">{{singer.name}}</a></td>
-
-            </tr>
-            {% endfor %}
-    </table>
-        {% if singers.has_prev %}
-            <a target="_self" href="{{ url_for('china', page = singers.prev_num) }}"><< Page </a>
-        {% else %}
-            <p style="color:black; text-decoration: blink;"><< Page  </p>
-        {% endif %}|
-        {% if singers.has_next %}
-            <a target="_self" href="{{ url_for('china', page = singers.next_num) }}"> Page >></a>
-        {% else %}
-             <p style="color:black; text-decoration: blink;"> Page >></p>
-        {% endif %}
-
-    <!--<img class="mobile-slide preserve" src="http://litta.co/wp-content/uploads/2017/06/homescreen.jpeg" height="100%" width="100%" style="position:absolute;display: block; top:0; overflow: hidden;">-->
-</div>
-</body>
-</html>
+{% endblock %}
+{% block page1 %}<a target="_self" href="{{ url_for('china', page = singers.prev_num) }}" style="color:yellow;text-decoration:blink;"><< Page </a>{% endblock %}
+{% block page2 %}<a target="_self" href="{{ url_for('china', page = singers.next_num) }}" style="color:yellow;text-decoration:blink;"> Page >></a>{% endblock %}

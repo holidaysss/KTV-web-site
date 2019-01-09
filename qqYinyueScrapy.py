@@ -100,6 +100,7 @@ if __name__ == '__main__':
                         '22%2C%22param%22%3A%7B%22area%22%3A4%2C%22sex%22%3A-100%2C%22genre%22%3A-100%2C%22index%22%' \
                         '3A-100%2C%22sin%22%3A{}%2C%22cur_page%22%3A{}%7D%7D%7D'
 
+
     singer_home_url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg?g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&singermid={}&order=listen&begin={}&num=30&songstatus=1'
 
     ip_poor = ['119.146.2.234', '219.234.5.128']
@@ -108,8 +109,8 @@ if __name__ == '__main__':
 
     add = 0  # 增量80
     singers_page = 1  # 歌手页
-    file_dir = 'C:/Users/summer/Desktop/点歌系统/曲库'
-    os.chdir("C:/Users/summer/Desktop/点歌系统/曲库")  # 换路径
+    # file_dir = 'C:/Users/summer/Desktop/点歌系统/曲库'
+    # os.chdir("C:/Users/summer/Desktop/点歌系统/曲库")  # 换路径
 
     # singer_list = []
     # with open('日本歌手.json', 'w')as f:  # json储存
@@ -139,25 +140,27 @@ if __name__ == '__main__':
     #             input()
     area_dict = {'内地': 200, '港台': 2, '欧美': 5, '日本': 4}
 
-    with open('欧美歌手.json', 'r')as f:  # json读取
-        for i in json.load(f):
-            songs_page = 0  # 歌曲页
-            print(i[0], i[1])
-            name = str(i[0])
-            infos = []
-            os.chdir("C:/Users/summer/Desktop/点歌系统/欧美歌曲")  # 换路径
-            while True:
-                songs_page_url = singer_home_url.format(str(i[1]), songs_page)
-                if is_end(songs_page_url, header):  # 一次写入
-                    with open(str(name) + '歌曲库.sj', 'ab')as g:  # pickle储存
-                        try:
-                            pickle.dump(infos, g)
-                        except Exception as e:
-                            print(e)
-                            print('wrong')
-                            pass
-                    print('end!')
-                    break
-                area_code = area_dict[f.name[0:2]]
-                infos += get_page_songs_info(songs_page_url, str(i[0]), area_code, header)
-                songs_page += 30  # 曲增量
+    # with open('欧美歌手.json', 'r')as f:  # json读取
+    #     for i in json.load(f):
+    #         songs_page = 0  # 歌曲页
+    #         print(i[0], i[1])
+    #         name = str(i[0])
+    #         infos = []
+    #         os.chdir("C:/Users/summer/Desktop/点歌系统/欧美歌曲")  # 换路径
+    #         while True:
+    #             songs_page_url = singer_home_url.format(str(i[1]), songs_page)
+    #             if is_end(songs_page_url, header):  # 一次写入
+    #                 with open(str(name) + '歌曲库.sj', 'ab')as g:  # pickle储存
+    #                     try:
+    #                         pickle.dump(infos, g)
+    #                     except Exception as e:
+    #                         print(e)
+    #                         print('wrong')
+    #                         pass
+    #                 print('end!')
+    #                 break
+    #             area_code = area_dict[f.name[0:2]]
+    #             infos += get_page_songs_info(songs_page_url, str(i[0]), area_code, header)
+    #             songs_page += 30  # 曲增量
+
+

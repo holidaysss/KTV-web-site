@@ -25,15 +25,16 @@ class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=False)
     albummid = db.Column(db.String(30), nullable=False)
-    singermid = db.Column(db.String(30), nullable=False)
+    singer = db.Column(db.String(255), nullable=False)
 
 
 class Top(db.Model):
     __tablename__ = 'top'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     area = db.Column(db.String(11), nullable=False)
+    songmid = db.Column(db.String(255), nullable=False)
     songname = db.Column(db.String(255), nullable=False)
-    singename = db.Column(db.String(255), nullable=False)
+    singername = db.Column(db.String(255), nullable=False)
 
 
 class Area(db.Model):

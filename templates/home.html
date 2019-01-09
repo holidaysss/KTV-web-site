@@ -19,7 +19,7 @@
     <!--</a>-->
      <div class="toolbar">
          <a target="_self" href="{{url_for('index')}}" class="active">Home</a>
-         <a target="_self" href="{{url_for('hot')}}">Top Songs</a>
+         <a target="_self" href="{{url_for('hot', page=1)}}">Top Songs</a>
          <a target="_self" href="{{url_for('china', page=1)}}">华语</a>
          <a target="_self" href="{{url_for('english', page=1)}}">English</a>
          <a target="_self" href="{{url_for('japan', page=1)}}">日语</a>
@@ -38,20 +38,7 @@
         </div>
     </form>
 
-    <div class="top" style="width:280px;float:left;">
 
-        <table data-pagination="true" data-side-pagination="client" data-page-size="10" >
-            <tr>
-                <td>---------top华语---------</td>
-            </tr>
-        {% for song in songs.items %}
-            <tr>
-                <td><a href="https://y.qq.com/n/yqq/song/{{song.mid}}.html" style="text-decoration:blink; color:pink">{{song.name}}</a></td>
-                <td><span class="song_singer">{{song.singer}}</span></td>
-            </tr>
-        {% endfor %}
-    </table>
-    </div>
 
     <!--<img class="mobile-slide preserve" src="http://litta.co/wp-content/uploads/2017/06/homescreen.jpeg" height="100%" width="100%" style="position:absolute;display: block; top:0; overflow: hidden;">-->
 </div>

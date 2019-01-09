@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>follow your voice</title>
+    <title>{% block title %}{% endblock %}</title>
     <base target="_blank">
     <link rel="stylesheet" href="../static/css/home.css">
 </head>
@@ -18,39 +18,37 @@
     <!--</a>-->
     <div class="toolbar">
         <a target="_self" href="{{url_for('index')}}" class="active">Home</a>
-        <a target="_self" href="{{url_for('hot', page=1)}}" style="background-color: #ca65ac;color: #fff;">Top Songs</a>
-        <a target="_self" href="{{url_for('china', page=1)}}">华语</a>
-        <a target="_self" href="{{url_for('english', page=1)}}">English</a>
-         <a target="_self" href="{{url_for('japan', page=1)}}">日语</a>
-
+        <a target="_self" href="{{url_for('hot', page=1)}}">Top Songs</a>
+        {% block nav %}{% endblock %}
     </div>
+
     <table data-pagination="true" data-side-pagination="client" data-page-size="10" >
-        {% for top in tops.items %}
+            {% for singer in singers.items %}
             <tr>
-                <td style="color:yellow;">{{top.id}}</td>
-                <td><a href="https://y.qq.com/n/yqq/song/{{top.songmid}}.html" style="text-decoration:blink; color:pink">{{top.songname}}</a></td>
-                <td><span class="song_singer">{{top.singername}}</span></td>
+                <td><a href="{{url_for('search', search=singer.name, page=1)}}" style="color:pink; text-decoration:blink;">{{singer.name}}</a></td>
+
             </tr>
-        {% endfor %}
+            {% endfor %}
     </table>
      <table>
             <tr>
                 <td>
-                    {% if tops.has_prev %}
-                <a target="_self" href="{{ url_for('hot', page = tops.prev_num) }}" style="color:yellow;text-decoration:blink;"><< Page </a>
+                    {% if singers.has_prev %}
+                {% block page1 %}{% endblock %}
                     {% else %}
-                <p style="color: gray;"><< Page </p>
+                <p style="color: black;text-decoration:blink;"><< Page </p>
                     {% endif %}
                 </td>
                 <td>
-                    {% if tops.has_next %}
-                <a target="_self" href="{{ url_for('hot', page = tops.next_num) }}" style="color:yellow;text-decoration:blink;"> Page >></a>
+                    {% if singers.has_next %}
+                {% block page2 %}{% endblock %}
                     {% else %}
-                <p style="color: gray;">Page >></p>
+                <p style="color: black;text-decoration:blink;">Page >></p>
                     {% endif %}
                 </td>
             </tr>
         </table>
+
     <!--<img class="mobile-slide preserve" src="http://litta.co/wp-content/uploads/2017/06/homescreen.jpeg" height="100%" width="100%" style="position:absolute;display: block; top:0; overflow: hidden;">-->
 </div>
 </body>

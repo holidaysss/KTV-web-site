@@ -24,24 +24,35 @@
             <h1>MacRae</h1>
         </div>
 
-        <table data-pagination="true" data-side-pagination="client" data-page-size="10" style="">
-            {% for song in songs.items %}
+        <table data-pagination="true" data-side-pagination="client" data-page-size="10">
+            {% for i in range(num) %}
             <tr>
-                <td><a href="https://y.qq.com/n/yqq/song/{{song.songmid}}.html" style="color:pink">{{song.name}}</a></td>
-                <!--<td><span class="song_singer" style="color: black">{{song.singer}}</span></td>-->
+                <td><a href="https://y.qq.com/n/yqq/song/{{songs.items[i].songmid}}.html" style="color:pink">{{songs.items[i].name}}</a></td>
+                <td><span class="song_singer" style="color: #42a997">{{songs.items[i].singer}}</span></td>
             </tr>
             {% endfor %}
+
         </table>
-        {% if songs.has_prev %}
-            <a target="_self" href="{{ url_for('search', search = search,page = songs.prev_num) }}"><< Page </a>
-        {% else %}
-            <p style="color: black;"><< Page </p>
-        {% endif %} |
-        {% if songs.has_next %}
-            <a target="_self" href="{{ url_for('search', search = search,page = songs.next_num) }}"> Page >></a>
-        {% else %}
-             <p style="color: black;">Page >></p>
-        {% endif %}
+        <table>
+            <tr>
+                <td>
+                    {% if songs.has_prev %}
+                <a target="_self" href="{{ url_for('search', search = search,page = songs.prev_num) }}" style="color:yellow;text-decoration:blink;"><< Page </a>
+                    {% else %}
+                <p style="color: black;"><< Page </p>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if songs.has_next %}
+                <a target="_self" href="{{ url_for('search', search = search,page = songs.next_num) }}" style="color:yellow;text-decoration:blink;"> Page >></a>
+                    {% else %}
+                <p style="color: black;">Page >></p>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+
+
 
 
         <!--<img class="mobile-slide preserve" src="http://litta.co/wp-content/uploads/2017/06/homescreen.jpeg" height="100%" width="100%" style="position:absolute;display: block; top:0; overflow: hidden;">-->
